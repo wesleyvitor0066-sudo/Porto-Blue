@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Um Flat Charmoso — Porto de Galinhas</title>
+<title>VS Flats — Porto de Galinhas</title>
 <meta name="description" content="Flat completo com rooftop de piscinas, a poucos minutos da praia de Porto de Galinhas. Reserve pelo WhatsApp ou Airbnb.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -57,11 +57,21 @@
   }
   @media (max-width:640px){ .topbar{ padding:18px 20px; } }
   .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
     color:#fff;
     font-family:'Fraunces', serif;
     font-size:1.15rem;
     font-weight:500;
     letter-spacing:0.01em;
+  }
+  .brand img{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#fff;
   }
   .topbar .cta{
     background:rgba(255,255,255,0.14);
@@ -295,6 +305,36 @@
     background:var(--pool);
   }
 
+  /* ---------- testimonials ---------- */
+  .testimonials{
+    padding:10px 0 100px;
+  }
+  .testimonials-head{ margin-bottom:40px; }
+  .testimonials-head h2{ color:var(--navy); font-size:1.7rem; }
+  .testi-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:26px;
+  }
+  @media (max-width:800px){ .testi-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .testi-grid{ grid-template-columns:1fr; } }
+  .testi-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:26px 24px;
+  }
+  .testi-stars{ color:var(--wood); font-size:0.85rem; letter-spacing:0.1em; margin-bottom:12px; }
+  .testi-card p{
+    font-size:0.94rem;
+    color:var(--ink);
+    margin:0 0 16px;
+  }
+  .testi-who{
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+
   /* ---------- location ---------- */
   .location{
     padding:0 0 100px;
@@ -389,7 +429,7 @@
 <body>
 
 <div class="topbar">
-  <div class="brand">Um Flat Charmoso</div>
+  <div class="brand"><img src="images/logo-vs-flats.jpeg" alt="Logo VS Flats">VS Flats</div>
   <a class="cta" href="https://wa.me/5581991888130?text=Ol%C3%A1!%20Vi%20o%20site%20do%20flat%20em%20Porto%20de%20Galinhas%20e%20queria%20saber%20mais." target="_blank" rel="noopener">Falar no WhatsApp</a>
 </div>
 
@@ -400,7 +440,7 @@
   <div class="hero-content">
     <div class="hero-inner">
       <span class="eyebrow-loc">Ipojuca · Porto de Galinhas, PE</span>
-      <h1>Um flat <em>charmoso</em> a poucos passos do mar</h1>
+      <h1>Um refúgio <em>charmoso</em> a poucos passos do mar</h1>
       <div class="hero-stats">
         <div class="stat"><b>4,86</b><span>nota no Airbnb · 79 avaliações</span></div>
         <div class="stat"><b>6</b><span>hóspedes</span></div>
@@ -501,6 +541,39 @@
     </div>
   </section>
 
+  <section class="testimonials">
+    <div class="testimonials-head">
+      <h2>Quem já ficou, conta como foi</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-stars">★★★★☆</div>
+        <p>O apartamento é igualzinho às fotos, super bem localizado e equipado — deu pra ir a tudo a pé. Teve um probleminha de limpeza, mas a anfitriã resolveu na hora. Vista da piscina é linda, e é pet friendly.</p>
+        <div class="testi-who">S. · hóspede em maio de 2026</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>Flat agradável, com um tamanho ótimo e localização sensacional.</p>
+        <div class="testi-who">S. · hóspede no Airbnb</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>Acomodou a família com duas crianças tranquilamente, tudo limpo e igual ao anúncio. Aconchegante, ótima localização e anfitriã sempre disponível e gentil.</p>
+        <div class="testi-who">M. · hóspede em maio de 2026</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>Localização ótima, dá pra ir a pé pra praia, centrinho, mercado e restaurantes. Não tem máquina de lavar no flat, mas tem lavanderia por perto e o preço vale muito a pena.</p>
+        <div class="testi-who">R. · hóspede em julho de 2026</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p>Estadia maravilhosa, tudo perfeito e pertinho do centro e da praia.</p>
+        <div class="testi-who">G. · hóspede em fevereiro de 2026</div>
+      </div>
+    </div>
+  </section>
+
   <section class="location">
     <div class="location-text">
       <span class="kicker">Localização</span>
@@ -527,7 +600,7 @@
 </section>
 
 <footer>
-  Um Flat Charmoso — Ipojuca, Porto de Galinhas, PE
+  VS Flats — Ipojuca, Porto de Galinhas, PE
 </footer>
 
 <a class="sticky-cta" href="https://wa.me/5581991888130?text=Ol%C3%A1!%20Vi%20o%20site%20do%20flat%20em%20Porto%20de%20Galinhas%20e%20queria%20saber%20mais." target="_blank" rel="noopener">Reservar pelo WhatsApp</a>
