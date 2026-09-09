@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um Flat Charmoso — Porto de Galinhas</title>
+<meta name="description" content="Flat completo com rooftop de piscinas, a poucos minutos da praia de Porto de Galinhas. Reserve pelo WhatsApp ou Airbnb.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0E3A4C;
+    --azulejo:#1F5C8B;
+    --pool:#3FA79A;
+    --wood:#C79A62;
+    --paper:#F7F5EF;
+    --ink:#16262E;
+    --ink-soft:#4B5B60;
+    --line: rgba(14,58,76,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 32px;
+    position:absolute;
+    top:0; left:0; right:0;
+    z-index:5;
+  }
+  @media (max-width:640px){ .topbar{ padding:18px 20px; } }
+  .brand{
+    color:#fff;
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .topbar .cta{
+    background:rgba(255,255,255,0.14);
+    border:1px solid rgba(255,255,255,0.55);
+    color:#fff;
+    padding:9px 18px;
+    border-radius:100px;
+    font-size:0.85rem;
+    letter-spacing:0.02em;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:flex-end;
+    background:#0a2430;
+    overflow:hidden;
+  }
+  .hero img,
+  .hero video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(10,30,40,0.05) 0%, rgba(9,26,34,0.15) 45%, rgba(8,22,29,0.82) 100%);
+    z-index:1;
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    width:100%;
+    padding:0 32px 46px;
+  }
+  @media (max-width:640px){ .hero-content{ padding:0 20px 34px; } }
+  .hero-inner{
+    max-width:1120px;
+    margin:0 auto;
+  }
+  .eyebrow-loc{
+    color:#cfe4e8;
+    font-size:0.95rem;
+    margin-bottom:14px;
+    font-weight:400;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(2.4rem, 5.4vw, 4.3rem);
+    line-height:1.04;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:#bfe3dd;
+  }
+  .hero-stats{
+    display:flex;
+    gap:34px;
+    margin-top:34px;
+    flex-wrap:wrap;
+    border-top:1px solid rgba(255,255,255,0.25);
+    padding-top:20px;
+  }
+  .stat b{
+    color:#fff;
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    display:block;
+    font-weight:500;
+  }
+  .stat span{
+    color:#cfe4e8;
+    font-size:0.82rem;
+  }
+
+  /* ---------- intro ---------- */
+  .intro{
+    padding:100px 0 70px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:64px;
+    align-items:center;
+  }
+  @media (max-width:800px){ .intro{ grid-template-columns:1fr; gap:36px; padding:70px 0 50px;} }
+  .intro-text .kicker{
+    color:var(--pool);
+    font-size:0.85rem;
+    margin-bottom:16px;
+    display:block;
+  }
+  .intro-text p.lead{
+    font-family:'Fraunces', serif;
+    font-size:clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight:400;
+    line-height:1.35;
+    color:var(--navy);
+    max-width:34ch;
+  }
+  .intro-text p.support{
+    color:var(--ink-soft);
+    max-width:42ch;
+    margin-top:22px;
+    font-size:0.98rem;
+  }
+  .intro-photo{
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .intro-photo img{ width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; }
+
+  /* ---------- gallery ---------- */
+  .gallery-section{ padding:30px 0 90px; }
+  .gallery-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:26px;
+  }
+  .gallery-head h2{
+    font-size:1.7rem;
+    color:var(--navy);
+  }
+  .gallery-head span{
+    color:var(--ink-soft);
+    font-size:0.85rem;
+  }
+  .gallery-strip{
+    display:flex;
+    gap:16px;
+    overflow-x:auto;
+    padding:4px 32px 18px;
+    margin:0 -32px;
+    scroll-snap-type:x mandatory;
+    -ms-overflow-style:none;
+    scrollbar-width:thin;
+  }
+  @media (max-width:640px){ .gallery-strip{ padding:4px 20px 18px; margin:0 -20px; } }
+  .gallery-strip img{
+    height:340px;
+    width:auto;
+    flex:0 0 auto;
+    border-radius:3px;
+    scroll-snap-align:start;
+  }
+  @media (max-width:640px){ .gallery-strip img{ height:230px; } }
+
+  /* ---------- amenities ---------- */
+  .amenities{
+    background:var(--navy);
+    color:#eef4f2;
+    padding:90px 0;
+  }
+  .amenities h2{
+    color:#fff;
+    font-size:1.8rem;
+    max-width:20ch;
+    margin-bottom:50px;
+  }
+  .amen-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:48px;
+  }
+  @media (max-width:800px){ .amen-grid{ grid-template-columns:1fr 1fr; gap:36px;} }
+  @media (max-width:560px){ .amen-grid{ grid-template-columns:1fr; } }
+  .amen-group h3{
+    font-size:1.05rem;
+    color:var(--wood);
+    font-weight:500;
+    margin-bottom:16px;
+    padding-bottom:12px;
+    border-bottom:1px solid rgba(255,255,255,0.18);
+  }
+  .amen-group ul{
+    list-style:none;
+    margin:0; padding:0;
+    color:#cfe0dd;
+    font-size:0.94rem;
+  }
+  .amen-group li{
+    padding:7px 0;
+  }
+
+  /* ---------- reviews ---------- */
+  .reviews{
+    padding:90px 0;
+    display:grid;
+    grid-template-columns:0.6fr 1.4fr;
+    gap:60px;
+  }
+  @media (max-width:800px){ .reviews{ grid-template-columns:1fr; gap:30px; } }
+  .score-big{
+    font-family:'Fraunces', serif;
+    font-size:5.2rem;
+    color:var(--navy);
+    line-height:1;
+  }
+  .score-sub{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    margin-top:10px;
+  }
+  .score-sub b{ color:var(--ink); }
+  .bars{ margin-top:8px; }
+  .bar-row{
+    display:grid;
+    grid-template-columns:120px 1fr 40px;
+    align-items:center;
+    gap:14px;
+    margin-bottom:14px;
+    font-size:0.88rem;
+    color:var(--ink-soft);
+  }
+  .bar-track{
+    height:5px;
+    background:var(--line);
+    border-radius:3px;
+    overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:var(--pool);
+  }
+
+  /* ---------- location ---------- */
+  .location{
+    padding:0 0 100px;
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:50px;
+    align-items:stretch;
+  }
+  @media (max-width:800px){ .location{ grid-template-columns:1fr; gap:30px; } }
+  .location-text .kicker{ color:var(--pool); font-size:0.85rem; display:block; margin-bottom:16px; }
+  .location h2{ color:var(--navy); font-size:1.7rem; margin-bottom:18px; max-width:16ch; }
+  .location p{ color:var(--ink-soft); max-width:40ch; font-size:0.98rem; }
+  .map-frame{
+    border-radius:4px;
+    overflow:hidden;
+    min-height:320px;
+    border:1px solid var(--line);
+  }
+  .map-frame iframe{ width:100%; height:100%; min-height:320px; border:0; display:block; }
+
+  /* ---------- cta band ---------- */
+  .cta-band{
+    background:linear-gradient(135deg, var(--navy) 0%, #103f4f 60%, #0c2e3a 100%);
+    color:#fff;
+    padding:90px 0 100px;
+    text-align:center;
+  }
+  .cta-band .kicker{ color:#a9d6cf; font-size:0.9rem; display:block; margin-bottom:18px; }
+  .cta-band h2{
+    color:#fff;
+    font-size:clamp(1.8rem, 3.6vw, 2.6rem);
+    max-width:20ch;
+    margin:0 auto 34px;
+  }
+  .cta-buttons{
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 28px;
+    border-radius:100px;
+    font-size:0.95rem;
+    font-weight:500;
+    transition:transform .18s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--pool); color:#04201c; }
+  .btn-ghost{ background:transparent; border:1px solid rgba(255,255,255,0.45); color:#fff; }
+  .cta-phone{
+    margin-top:28px;
+    color:#bcd8d3;
+    font-size:0.88rem;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:34px 0 110px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.82rem;
+  }
+  @media (min-width:641px){ footer{ padding-bottom:34px; } }
+
+  /* ---------- sticky mobile cta ---------- */
+  .sticky-cta{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:var(--pool);
+    color:#04201c;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:16px;
+    font-weight:500;
+    font-size:0.95rem;
+    z-index:50;
+    box-shadow:0 -6px 18px rgba(0,0,0,0.18);
+  }
+  @media (max-width:640px){
+    .sticky-cta{ display:flex; }
+    footer{ padding-bottom:90px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Um Flat Charmoso</div>
+  <a class="cta" href="https://wa.me/5581991888130?text=Ol%C3%A1!%20Vi%20o%20site%20do%20flat%20em%20Porto%20de%20Galinhas%20e%20queria%20saber%20mais." target="_blank" rel="noopener">Falar no WhatsApp</a>
+</div>
+
+<section class="hero">
+  <video autoplay muted loop playsinline poster="images/01.jpeg" aria-label="Vídeo tour do flat e do rooftop com piscinas em Porto de Galinhas">
+    <source src="images/tour.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <span class="eyebrow-loc">Ipojuca · Porto de Galinhas, PE</span>
+      <h1>Um flat <em>charmoso</em> a poucos passos do mar</h1>
+      <div class="hero-stats">
+        <div class="stat"><b>4,86</b><span>nota no Airbnb · 79 avaliações</span></div>
+        <div class="stat"><b>6</b><span>hóspedes</span></div>
+        <div class="stat"><b>5</b><span>piscinas no rooftop</span></div>
+        <div class="stat"><b>8 anos</b><span>de anfitriã Superhost</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="intro">
+    <div class="intro-text">
+      <span class="kicker">O flat</span>
+      <p class="lead">Um apartamento climatizado e cheio de estilo, pensado para a família toda aproveitar Porto de Galinhas com calma.</p>
+      <p class="support">O quarto é reversível e acomoda até 6 pessoas, com três camas distribuídas entre os ambientes. A cozinha vem completa, o Wi-Fi é rápido e há uma vaga de garagem exclusiva — tudo para quem quer chegar e já se sentir em casa.</p>
+      <p class="support">Mas o grande diferencial está na cobertura do prédio: um rooftop com cinco piscinas, sendo duas com hidromassagem, churrasqueira, sala de jogos e vista panorâmica para a vila de Porto de Galinhas.</p>
+    </div>
+    <div class="intro-photo">
+      <img src="images/07.jpeg" alt="Sala de estar integrada à cozinha do flat">
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <div class="gallery-head">
+      <h2>Um pouco de cada canto</h2>
+      <span>arraste para o lado →</span>
+    </div>
+    <div class="gallery-strip">
+      <img src="images/03.jpeg" alt="Rooftop com piscinas, guarda-sóis e vista para o mar">
+      <img src="images/15.jpeg" alt="Sala de estar com sofá e almofadas náuticas">
+      <img src="images/02.jpeg" alt="Quarto com cama de baixo e superior, ar-condicionado">
+      <img src="images/04.jpeg" alt="Cozinha completa com fogão e pia">
+      <img src="images/14.jpeg" alt="Mesa de jantar posta para quatro pessoas">
+      <img src="images/05.jpeg" alt="Área de churrasqueira com azulejos azuis">
+      <img src="images/08.jpeg" alt="Banheiro com box de vidro e toalhas dobradas">
+      <img src="images/10.jpeg" alt="Cantinho de trabalho com TV e espelho">
+      <img src="images/19.jpeg" alt="Sala de jogos com pebolim, tênis de mesa e academia">
+    </div>
+  </section>
+
+</main>
+
+<section class="amenities">
+  <div class="wrap">
+    <h2>O que vem incluso na estadia</h2>
+    <div class="amen-grid">
+      <div class="amen-group">
+        <h3>No rooftop</h3>
+        <ul>
+          <li>5 piscinas, duas com hidromassagem</li>
+          <li>Deck de madeira com espreguiçadeiras</li>
+          <li>Churrasqueira</li>
+          <li>Sala de jogos: pebolim e tênis de mesa</li>
+          <li>Academia com esteira, bike e pesos</li>
+          <li>Vista panorâmica para a vila</li>
+        </ul>
+      </div>
+      <div class="amen-group">
+        <h3>No apartamento</h3>
+        <ul>
+          <li>Ar-condicionado em todos os ambientes</li>
+          <li>Cozinha equipada</li>
+          <li>Quarto reversível · 3 camas · 6 hóspedes</li>
+          <li>Wi-Fi de alta velocidade</li>
+          <li>Espaço de trabalho dedicado</li>
+          <li>TV</li>
+        </ul>
+      </div>
+      <div class="amen-group">
+        <h3>Praia e redondezas</h3>
+        <ul>
+          <li>Acesso compartilhado à praia, à beira-mar</li>
+          <li>1 vaga de garagem exclusiva</li>
+          <li>A poucos minutos da vila de Porto de Galinhas</li>
+          <li>Restaurantes e passeios por perto</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <section class="reviews">
+    <div>
+      <div class="score-big">4,86</div>
+      <div class="score-sub">de <b>5 estrelas</b><br>79 avaliações no Airbnb<br>Anfitriã Superhost há 8 anos</div>
+    </div>
+    <div class="bars">
+      <div class="bar-row"><span>Limpeza</span><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div><span>4,8</span></div>
+      <div class="bar-row"><span>Exatidão</span><div class="bar-track"><div class="bar-fill" style="width:96%"></div></div><span>4,8</span></div>
+      <div class="bar-row"><span>Check-in</span><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span>4,9</span></div>
+      <div class="bar-row"><span>Comunicação</span><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span>4,9</span></div>
+      <div class="bar-row"><span>Localização</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span>5,0</span></div>
+      <div class="bar-row"><span>Custo-benefício</span><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span>4,9</span></div>
+    </div>
+  </section>
+
+  <section class="location">
+    <div class="location-text">
+      <span class="kicker">Localização</span>
+      <h2>Em Ipojuca, no coração de Porto de Galinhas</h2>
+      <p>A localização exata é enviada após a confirmação da reserva, mas o flat fica bem perto da orla e da vila, com praia de acesso compartilhado e boas opções de restaurantes e passeios ao redor.</p>
+    </div>
+    <div class="map-frame">
+      <iframe src="https://www.google.com/maps?q=Porto+de+Galinhas,+Ipojuca,+PE&output=embed" loading="lazy" allowfullscreen title="Mapa de Porto de Galinhas"></iframe>
+    </div>
+  </section>
+
+</main>
+
+<section class="cta-band">
+  <div class="wrap">
+    <span class="kicker">Reservas</span>
+    <h2>Bora marcar sua estadia em Porto de Galinhas?</h2>
+    <div class="cta-buttons">
+      <a class="btn btn-primary" href="https://wa.me/5581991888130?text=Ol%C3%A1!%20Vi%20o%20site%20do%20flat%20em%20Porto%20de%20Galinhas%20e%20queria%20saber%20mais." target="_blank" rel="noopener">Reservar pelo WhatsApp</a>
+      <a class="btn btn-ghost" href="https://www.airbnb.com.br/rooms/805671210347660138" target="_blank" rel="noopener">Ver no Airbnb</a>
+    </div>
+    <div class="cta-phone">(81) 99188-8130</div>
+  </div>
+</section>
+
+<footer>
+  Um Flat Charmoso — Ipojuca, Porto de Galinhas, PE
+</footer>
+
+<a class="sticky-cta" href="https://wa.me/5581991888130?text=Ol%C3%A1!%20Vi%20o%20site%20do%20flat%20em%20Porto%20de%20Galinhas%20e%20queria%20saber%20mais." target="_blank" rel="noopener">Reservar pelo WhatsApp</a>
+
+</body>
+</html>
