@@ -355,49 +355,55 @@
   .location-text .kicker{ color:var(--pool); font-size:0.85rem; display:block; margin-bottom:16px; }
   .location h2{ color:var(--navy); font-size:1.7rem; margin-bottom:18px; max-width:16ch; }
   .location p{ color:var(--ink-soft); max-width:40ch; font-size:0.98rem; }
-  .map-card{
+  .map-frame{
     position:relative;
-    display:flex;
-    align-items:flex-end;
     border-radius:4px;
     overflow:hidden;
     min-height:320px;
     border:1px solid var(--line);
-    isolation:isolate;
   }
-  .map-card-art{
+  .map-frame iframe{
+    width:100%;
+    height:100%;
+    min-height:320px;
+    border:0;
+    display:block;
+  }
+  .map-tap-overlay{
     position:absolute;
     inset:0;
     width:100%;
     height:100%;
-    z-index:0;
+    background:rgba(14,58,76,0.12);
+    border:none;
+    cursor:pointer;
+    display:flex;
+    align-items:flex-end;
+    justify-content:flex-start;
+    padding:16px 20px;
   }
-  .map-card-label{
-    position:relative;
-    z-index:1;
-    width:100%;
+  .map-tap-overlay span{
+    background:rgba(14,58,76,0.85);
+    color:#fff;
+    font-family:'Work Sans', sans-serif;
+    font-size:0.85rem;
+    font-weight:500;
+    padding:8px 14px;
+    border-radius:100px;
+  }
+  .map-frame.active .map-tap-overlay{ display:none; }
+  .map-frame.active iframe{ pointer-events:auto; }
+  .map-frame:not(.active) iframe{ pointer-events:none; }
+  .map-caption{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     flex-wrap:wrap;
     gap:8px;
-    padding:20px 24px;
-    background:linear-gradient(0deg, rgba(8,25,33,0.88) 0%, rgba(8,25,33,0.0) 100%);
-  }
-  .map-card-label strong{
-    font-family:'Fraunces', serif;
-    color:#fff;
-    font-size:1.05rem;
-    font-weight:500;
-    display:block;
-  }
-  .map-card-label span{
-    color:#bfe3dd;
+    margin-top:10px;
     font-size:0.85rem;
+    color:var(--ink-soft);
   }
-  .map-card:hover .map-card-label{
-    background:linear-gradient(0deg, rgba(8,25,33,0.94) 0%, rgba(8,25,33,0.05) 100%);
-  }
+  .map-caption a{ color:var(--azulejo); }
 
   /* ---------- cta band ---------- */
   .cta-band{
@@ -624,29 +630,16 @@
       <h2>Em Ipojuca, no coração de Porto de Galinhas</h2>
       <p>A localização exata é enviada após a confirmação da reserva, mas o flat fica bem perto da orla e da vila, com praia de acesso compartilhado e boas opções de restaurantes e passeios ao redor.</p>
     </div>
-    <a class="map-card" href="https://www.google.com/maps?q=Porto+de+Galinhas,+Ipojuca,+PE" target="_blank" rel="noopener" aria-label="Abrir localização no Google Maps">
-      <svg class="map-card-art" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect width="400" height="320" fill="#0E3A4C"/>
-        <path d="M0 210 C 60 180, 110 230, 170 205 S 280 165, 400 200 V320 H0 Z" fill="#123f52"/>
-        <path d="M0 250 C 70 225, 130 265, 200 245 S 300 215, 400 240 V320 H0 Z" fill="#155166"/>
-        <path d="M0 285 C 80 265, 150 300, 220 280 S 310 255, 400 275 V320 H0 Z" fill="#1c6478"/>
-        <g stroke="#3FA79A" stroke-width="1.4" stroke-dasharray="1 9" stroke-linecap="round" opacity="0.55">
-          <path d="M20 60 H380" />
-          <path d="M20 110 H380" />
-          <path d="M60 20 V300" />
-          <path d="M150 20 V300" />
-          <path d="M250 20 V300" />
-          <path d="M340 20 V300" />
-        </g>
-        <circle cx="200" cy="130" r="46" fill="#3FA79A" opacity="0.18"/>
-        <path d="M200 92c-21 0-38 16-38 37 0 28 38 63 38 63s38-35 38-63c0-21-17-37-38-37Z" fill="#C79A62"/>
-        <circle cx="200" cy="129" r="14" fill="#0E3A4C"/>
-      </svg>
-      <span class="map-card-label">
-        <strong>Ver rota até o flat</strong>
-        <span>Abrir no Google Maps ↗</span>
-      </span>
-    </a>
+    <div class="map-block">
+      <div class="map-frame" id="mapFrame">
+        <iframe id="mapIframe" src="https://www.google.com/maps?q=Porto+de+Galinhas,+Ipojuca,+PE&output=embed" loading="lazy" allowfullscreen title="Mapa de Porto de Galinhas"></iframe>
+        <button type="button" class="map-tap-overlay" id="mapOverlay"><span>Toque para interagir com o mapa</span></button>
+      </div>
+      <div class="map-caption">
+        <span>Porto de Galinhas, Ipojuca – PE</span>
+        <a href="https://www.google.com/maps?q=Porto+de+Galinhas,+Ipojuca,+PE" target="_blank" rel="noopener">Abrir no Google Maps ↗</a>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -711,6 +704,16 @@
   }, { passive:false });
 
   strip.addEventListener('touchend', function(){ touchY = null; });
+
+  // Mapa: só fica interativo depois que a pessoa toca de propósito,
+  // assim o dedo passa direto pela rolagem normal da página até esse ponto.
+  var mapFrame = document.getElementById('mapFrame');
+  var mapOverlay = document.getElementById('mapOverlay');
+  if (mapFrame && mapOverlay){
+    mapOverlay.addEventListener('click', function(){
+      mapFrame.classList.add('active');
+    });
+  }
 })();
 </script>
 
